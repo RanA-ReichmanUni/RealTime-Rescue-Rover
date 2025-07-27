@@ -48,7 +48,8 @@ ipch/
 *.layout
 *.cbp
 *.layout.save
-
+*.txt
+*.zip
 # === CLion ===
 .idea/
 *.iml
