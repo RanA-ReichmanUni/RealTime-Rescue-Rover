@@ -1,0 +1,71 @@
+# === C++ Build Artifacts ===
+*.o
+*.obj
+*.lo
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+*.exe
+*.out
+
+# === Dependency/Intermediate Files ===
+*.d
+*.dep
+*.mod
+*.idb
+*.pdb
+*.ilk
+
+# === CMake / Build Systems ===
+/CMakeFiles/
+/CMakeCache.txt
+/cmake_install.cmake
+/Makefile
+/build/
+/Debug/
+/Release/
+/x64/
+/bin/
+/lib/
+/*.dir/
+
+# === Visual Studio Specific ===
+*.user
+*.suo
+*.VC.db
+*.VC.VC.opendb
+*.ncb
+*.aps
+*.cache
+*.log
+ipch/
+.vs/
+
+# === Code::Blocks ===
+*.depend
+*.layout
+*.cbp
+*.layout.save
+
+# === CLion ===
+.idea/
+*.iml
+
+# === OS Generated Files ===
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# === Logs and Misc ===
+*.log
+*.swp
+*.swo
+*.bak
+
+# === Custom Rover Project ===
+/RescueRover/.vs/
+/RescueRover/build/
+/RescueRover/*.exe

@@ -1,0 +1,112 @@
+C++ Final Summary
+
+──────────────────────────────────────
+🔹 Variables & Initialization
+──────────────────────────────────────
+- Variables must be initialized before use — using uninitialized variables causes undefined behavior.
+- You can assign values using `=`, or initialize with `{}` or `()`.
+- Chain assignment (`a = b = c = 5;`) works right to left.
+
+──────────────────────────────────────
+🔹 Identifier Rules
+──────────────────────────────────────
+- Must start with a letter or underscore, followed by letters, digits, or underscores.
+- Cannot use reserved keywords.
+- Case-sensitive.
+
+──────────────────────────────────────
+🔹 Expressions & Operators
+──────────────────────────────────────
+- Use `pow(base, exponent)` from `<cmath>` for exponentiation.
+- `++x` (pre-increment) increments before value is used.
+- `x++` (post-increment) increments after value is used.
+- Use `++x` by default unless post-increment behavior is needed.
+
+──────────────────────────────────────
+🔹 Functions
+──────────────────────────────────────
+- Structure: `return_type function_name(param_type param_name)`
+- Declarations are required before use if the definition comes later.
+- By default, C++ passes arguments by value (copy).
+- Use `&` for reference parameters to modify the original.
+
+──────────────────────────────────────
+🔹 Scope & Lifetime
+──────────────────────────────────────
+- Variables have local scope by default — defined inside blocks.
+- Nested `if` blocks can access outer scope variables.
+
+──────────────────────────────────────
+🔹 Multi-file Programs
+──────────────────────────────────────
+- Use header files (`.h`) for declarations, source files (`.cpp`) for definitions.
+- Enables modular and maintainable design.
+
+──────────────────────────────────────
+🔹 Namespaces
+──────────────────────────────────────
+- A code container for organizing anything — functions, variables, classes, etc.
+- Unlike a class, it’s not a type — no instances.
+
+──────────────────────────────────────
+🔹 Preprocessor & Header Guards
+──────────────────────────────────────
+- `#include` imports header files.
+- Use `#ifndef`, `#define`, and `#endif` or `#pragma once` to prevent multiple inclusions.
+- `#pragma once` is non-standard but widely supported; rare cases may fail due to symbolic links.
+
+──────────────────────────────────────
+🔹 Debugging & Errors
+──────────────────────────────────────
+- Use `assert()` to catch invalid states during development.
+- The call stack shows the chain of active function calls — useful for debugging.
+
+──────────────────────────────────────
+🔹 Data Types
+──────────────────────────────────────
+
+• **Fundamental Types**
+  - `int`, `long`, `long long`, `float`, `double`, `char`, `bool`
+
+• **Floating-Point Types**
+  - `float`, `double`, `long double`
+  - Decimal literals are `double` by default.
+  - Use `f` to make a literal `float` (`3.14f`).
+  - Avoid direct equality — use tolerance (e.g., `std::abs(a - b) < 1e-6`).
+
+• **Scientific Notation**
+  - Use `e` or `E` for base × 10^exponent (e.g., `6.02e23`, `1.0e-9`).
+  - `f` suffix keeps it a `float`.
+
+• **Booleans**
+  - `bool` stores `true` or `false`.
+  - `0` is false, non-zero is true.
+  - Use `std::boolalpha` for `true`/`false` output instead of `1`/`0`.
+
+• **Char**
+  - `char` is a 1-byte integer storing ASCII values.
+  - Use single quotes: `'a'`.
+  - Use `int(c)` to see ASCII value.
+  - Escape sequences: `'
+'`, `'	'`, `'\'`, `'''`
+
+• **Unsigned Integers**
+  - Can only store non-negative values.
+  - Dangerous when subtracting: e.g., `for (unsigned i = 10; i >= 0; --i)` creates infinite loop.
+  - Best avoided unless required.
+
+• **Fixed-width Integers**
+  - Use `<cstdint>` for consistent types: `int32_t`, `uint8_t`, etc.
+  - `size_t` is an unsigned type used for sizes (e.g., from `sizeof`). Be cautious when comparing.
+
+• **sizeof**
+  - Returns memory size of a type or variable.
+  - Calculated at compile time.
+  - Useful for low-level work.
+
+──────────────────────────────────────
+🔹 Type Conversion
+──────────────────────────────────────
+- Implicit conversions happen automatically and may lose precision.
+- Use `static_cast<type>(value)` for safe, explicit conversions.
+- Avoid C-style casts like `(int)`.
