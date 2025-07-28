@@ -10,7 +10,7 @@ MotorDriver::MotorDriver(int leftPwmPin, int leftDirPin,
     leftDirPin(leftDirPin),
     rightPwmPin(rightPwmPin),
     rightDirPin(rightDirPin) {
-    // Set pin modes if needed (in Arduino or wiringPi)
+   
 }
 
 void MotorDriver::setSpeeds(int leftSpeed, int rightSpeed) {
