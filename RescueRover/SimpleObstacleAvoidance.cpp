@@ -3,10 +3,15 @@
 constexpr double FRONT_CLEARANCE_THRESHOLD = 30.0;  // cm: distance considered "safe" for forward movement
 constexpr double SIDE_CLEARANCE_THRESHOLD = 10.0;  // cm: minimum distance required for side movement
 
-MoveDecision SimpleObstacleAvoidance::decide(const SensorStatus& sensors) {
+
+DecisionResult SimpleObstacleAvoidance::decide(const SensorStatus& sensors) {
+    DecisionResult result{};
+
     // Prefer forward movement if there's enough space ahead
-    if (sensors.frontClearDistance >= FRONT_CLEARANCE_THRESHOLD)
-        return MoveDecision::FORWARD;
+    if (sensors.frontClearDistance >= FRONT_CLEARANCE_THRESHOLD) {
+        result.chosen = MoveDecision::FORWARD;
+        return result;
+    }
 
     // Otherwise, evaluate side options
     bool leftUsable = sensors.leftClearDistance >= SIDE_CLEARANCE_THRESHOLD;
@@ -14,22 +19,36 @@ MoveDecision SimpleObstacleAvoidance::decide(const SensorStatus& sensors) {
 
     if (leftUsable && rightUsable) {
         // Prefer the side with more space
-        return (sensors.leftClearDistance > sensors.rightClearDistance)
-            ? MoveDecision::LEFT
-            : MoveDecision::RIGHT;
+        if (sensors.leftClearDistance > sensors.rightClearDistance) {
+            result.chosen = MoveDecision::LEFT;
+            result.alternative = MoveDecision::RIGHT; // store alternative
+        }
+        else {
+            result.chosen = MoveDecision::RIGHT;
+            result.alternative = MoveDecision::LEFT;  // store alternative
+        }
+        return result;
     }
 
-    if (leftUsable)  return MoveDecision::LEFT;
-    if (rightUsable) return MoveDecision::RIGHT;
+    if (leftUsable) {
+        result.chosen = MoveDecision::LEFT;
+        return result;
+    }
+    if (rightUsable) {
+        result.chosen = MoveDecision::RIGHT;
+        return result;
+    }
 
     // All directions are too tight: declare stuck
     if (sensors.frontClearDistance < SIDE_CLEARANCE_THRESHOLD &&
         sensors.leftClearDistance < SIDE_CLEARANCE_THRESHOLD &&
         sensors.rightClearDistance < SIDE_CLEARANCE_THRESHOLD) {
-        return MoveDecision::STUCK;
+        result.chosen = MoveDecision::STUCK;
+        return result;
     }
 
     // Fallback to reverse if forward is blocked and no side is usable
-	//----- Placeholder for reverse timeTravel logic -----
-    return MoveDecision::REVERSE;
+    // ----- Placeholder for reverse timeTravel logic -----
+    result.chosen = MoveDecision::REVERSE;
+    return result;
 }

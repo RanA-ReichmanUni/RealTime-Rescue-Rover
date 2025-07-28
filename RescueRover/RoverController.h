@@ -4,13 +4,19 @@
 #include "MovementManager.h"
 #include "MotorDriver.h"  
 #include <memory>
+#include <optional>
+#include <stack>
 
+// Default duration for each movement step
+static constexpr int DefaultStepDurationMs = 1000;
 
-static constexpr int DefaultStepDurationMs = 1000; // Default step duration in milliseconds
-
-enum class BypassDirection {
-    Left,
-    Right
+struct AlternativePath {
+    int stepIndex;
+    MoveDecision alternative;
+	// Constructor to initialize AlternativePath with step index and alternative decision
+    AlternativePath(int stepIndex, MoveDecision alternative)
+        : stepIndex(stepIndex), alternative(alternative) {
+    }
 };
 
 class RoverController {
@@ -21,7 +27,8 @@ public:
         int forwardSpeed,
         int turnSpeed);
 
-    void moveStep();  // Core movement logic
+    void moveStep();    // Core decision + move execution
+    void timeTravel();  // Reverse to alternative path
 
 private:
     std::unique_ptr<ObstacleAvoidance> obstacleAvoidance;
@@ -30,8 +37,9 @@ private:
     int forwardSpeed;
     int turnSpeed;
 
-    // Internal helpers
-    SensorStatus readSensorData();  // Simulated for now
-    void sendMotorCommand(const MovementStep& step);
+    std::vector<MoveDecision> movementHistory;
+    std::stack<AlternativePath> alternativePaths;
+
+    SensorStatus readSensorData();
     bool isStuck(MoveDecision decision) const;
 };

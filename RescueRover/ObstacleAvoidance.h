@@ -1,4 +1,5 @@
 #pragma once
+#include <optional> // Ensure this include is present
 
 enum class MoveDecision {
     FORWARD,
@@ -7,7 +8,17 @@ enum class MoveDecision {
     REVERSE,
     STUCK  // no good option
 };
+enum class BypassDirection {
+    Left,
+    Right
+};
 
+struct DecisionResult {
+    MoveDecision chosen;                              // What OA decided
+    bool isBypass = false;                            // True if this is a side bypass
+    std::optional<BypassDirection> bypassDirection;   // Direction of bypass if applicable
+    std::optional<MoveDecision> alternative;          // Alternative path if one exists
+};
 
 struct SensorStatus {
     double frontClearDistance;
@@ -19,6 +30,5 @@ struct SensorStatus {
 class ObstacleAvoidance {
 public:
     virtual ~ObstacleAvoidance() = default;
-    virtual MoveDecision decide(const SensorStatus& sensors) = 0;
+    virtual DecisionResult decide(const SensorStatus& sensors) = 0;
 };
-
