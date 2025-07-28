@@ -60,4 +60,4 @@ If physical sensors detect an impact (e.g., joystick sensors), the rover reacts 
 The rover is currently under active development.  
 Core logic is being implemented in C++ and will be deployed to real hardware once complete.
 
-> The project aim to develop into a fully physical autonomous rover project aimed at practical deployment in the field using embedded C++.
+> The project aim to develop into a fully physical autonomous rover project. Aimed at practical deployment using embedded C++.
