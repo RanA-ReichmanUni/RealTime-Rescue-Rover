@@ -45,7 +45,7 @@ void RoverController::moveStep() {
 
 
 SensorStatus RoverController::readSensorData() {
-    // Simulated distances — Todo - replace with real sensor reading later
+    // Simulated distances — Todo - replace with real sensor reading
     SensorStatus sensors;
     std::cout << "Enter front distance (cm): ";
     std::cin >> sensors.frontClearDistance;

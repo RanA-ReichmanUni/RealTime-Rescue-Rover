@@ -2,7 +2,7 @@
 #include <algorithm> 
 #include <iostream>
 
-// ToDo - Replace with actual motor control functions 
+// ToDo - Replace with motor control functions 
 
 MotorDriver::MotorDriver(int leftPwmPin, int leftDirPin,
     int rightPwmPin, int rightDirPin)

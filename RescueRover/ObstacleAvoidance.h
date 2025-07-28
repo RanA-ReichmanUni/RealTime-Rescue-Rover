@@ -13,7 +13,7 @@ struct SensorStatus {
     double frontClearDistance;
     double leftClearDistance;
     double rightClearDistance;
-    // Add more (e.g., distances) if needed
+    
 };
 
 class ObstacleAvoidance {
