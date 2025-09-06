@@ -4,7 +4,16 @@ constexpr double FRONT_CLEARANCE_THRESHOLD = 30.0;  // cm: distance considered "
 constexpr double SIDE_CLEARANCE_THRESHOLD = 10.0;  // cm: minimum distance required for side movement
 
 
+
+// This function analyzes sensor data to determine the best movement direction
+// based on available space in front and to the sides.
+// It returns a DecisionResult indicating the chosen direction and any alternative.
+
 DecisionResult SimpleObstacleAvoidance::decide(const SensorStatus& sensors) {
+
+
+
+
     DecisionResult result{};
 
     // Prefer forward movement if there's enough space ahead

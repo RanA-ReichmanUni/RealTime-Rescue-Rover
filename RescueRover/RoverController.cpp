@@ -63,7 +63,7 @@ void RoverController::timeTravel() {
 
     // Reverse back to the crossroad step index
     while ((int)movementHistory.size() > alt.stepIndex) {
-        movementManager->executeReverse(movementHistory.back());
+        movementManager->executeInReverseOrder(movementHistory.back());
         movementHistory.pop_back();
     }
 

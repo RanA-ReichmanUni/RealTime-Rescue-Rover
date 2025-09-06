@@ -59,7 +59,7 @@ void MovementManager::executeMove(MoveDecision decision) {
 }
 
 // Execute reverse move (for timeTravel)
-void MovementManager::executeReverse(MoveDecision decision) {
+void MovementManager::executeInReverseOrder(MoveDecision decision) {
     MotorAction reverseAction;
     int duration = forwardDurationMs;
 

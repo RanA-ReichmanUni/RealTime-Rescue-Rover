@@ -32,7 +32,7 @@ public:
     void executeMove(MoveDecision decision);
 
     // Execute a reverse movement decision (for timeTravel)
-    void executeReverse(MoveDecision decision);
+    void executeInReverseOrder(MoveDecision decision);
 
     // Execute a series of steps (used by OA bypass)
     void executeSteps(const std::vector<MovementStep>& steps);
