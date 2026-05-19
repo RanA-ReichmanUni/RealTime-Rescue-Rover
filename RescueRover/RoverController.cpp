@@ -20,14 +20,14 @@ void RoverController::moveStep() {
     DecisionResult decision = obstacleAvoidance->decide(sensors);
 
     if (isStuck(decision.chosen)) {
-        std::cout << "[Controller] STUCK detected — considering timeTravel.\n";
+        std::cout << "[Controller] STUCK detected ï¿½ considering timeTravel.\n";
         timeTravel();
         return;
     }
 
     // Store alternative path if OA detected one
     if (decision.alternative.has_value()) {
-        alternativePaths.push({ movementHistory.size(), decision.alternative.value() });
+        alternativePaths.push({ (int)movementHistory.size(), decision.alternative.value() });
     }
 
     // Execute move via MovementManager
